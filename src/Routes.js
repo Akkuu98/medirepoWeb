@@ -4,6 +4,7 @@ import { useUserState } from "./context/UserContext";
 import Bulletin from "./pages/patients/Bulletin";
 import Login from "./pages/patients/Login";
 import LoginHosp from "./pages/hospitals/Login";
+import NotFound from "./pages/NotFound";
 import Layout from "./pages/hospitals/Layout";
 import ResetToken from "./pages/hospitals/ResetToken";
 import FastLogin from "./pages/hospitals/FastLogin";
@@ -33,6 +34,7 @@ export default function Routes() {
           path="/hospitals/fastlogin/:id/:resetToken"
           component={FastLogin}
         />
+        <Route exact path="*" render={() => <NotFound />} />
       </Switch>
     </BrowserRouter>
   );
@@ -71,7 +73,9 @@ export default function Routes() {
             <Redirect
               to={{
                 pathname:
-                  token_id === "1" ? "/patients/bulletin" : "/hospitals/app/dashboard",
+                  token_id === "1"
+                    ? "/patients/bulletin"
+                    : "/hospitals/app/dashboard",
               }}
             />
           ) : (
